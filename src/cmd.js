@@ -6,8 +6,6 @@ import { EventEmitter } from "events";
 import { WaitForAll } from "ewait";
 import scrape from "website-scraper";
 import moment from "moment";
-import PuppeteerPlugin from "website-scraper-puppeteer";
-import PhantomPlugin from "website-scraper-phantom";
 
 var launch = function(args) {
   var tmpDirPath = null;
@@ -51,9 +49,11 @@ var launch = function(args) {
           (_item, _next) => {
             var plugins = [];
             if (args["--use-puppeteer"]) {
+              var PuppeteerPlugin = require("website-scraper-puppeteer");
               plugins.push(new PuppeteerPlugin());
             }
             if (args["--use-phantom"]) {
+              var PhantomPlugin = require("website-scraper-phantom");
               plugins.push(new PhantomPlugin());
             }
             const options = {

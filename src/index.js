@@ -6,8 +6,7 @@ Download webpages to a local folder for archiving purpose\n\
 \n\
 Usage: archive-web [--output-dir <dir>]\n\
                [--use-puppeteer | --use-phantom]\n\
-               [--no-timestamp]\n\
-               [--timestamp-format <tf>]\n\
+               [--no-timestamp]\n\ [--timestamp-format <tf>]\n\
                [--utc]\n\
                [-v --verbose]\n\
                [--debug]\n\
@@ -53,7 +52,7 @@ import * as _cmd from "./cmd";
 
 var kwargs = {
   name: "archive-web",
-  version: "archive-web 0.0.1"
+  version: "archive-web 0.1.0"
 };
 
 function main(args) {

@@ -6,6 +6,8 @@ When saving web pages for later use, we would normally use [Wayback machine](htt
 If you download [https://www.npmjs.com](https://www.npmjs.com) then the final link looks like this: [https://yourserver/20190724002159/https%3A%2F%2Fwww.npmjs.com/index.html](https://yourserver/20190724002159/https%3A%2F%2Fwww.npmjs.com/index.html)
 
 ## Install
+* nodejs version >= 8.10.0
+
 ```
 Use npm
 $ npm install -g archive-web
@@ -13,6 +15,8 @@ $ npm install -g archive-web
 Use yarn
 $ yarn global add archive-web
 ```
+
+* If you want to use headless browsers `puppeteer` or `phantomjs` then you have to install `website-scraper-puppeteer` or `website-scraper-phantom`, respectively.
 
 ## Usage
 ```
