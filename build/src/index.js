@@ -1,18 +1,13 @@
-#!/usr/bin/env node
-"use strict";
-
-var docopt = _interopRequireWildcard(require("docopt"));
-
-var _cmd = _interopRequireWildcard(require("./cmd"));
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
-
-var doc = "\n\
+import * as docopt from 'docopt';
+import { launch } from './cmd.js';
+const doc = '\n\
 Download webpages to a local folder for archiving purpose\n\
 \n\
 Usage: archive-web [--output-dir <dir>]\n\
                [--use-puppeteer | --use-phantom]\n\
-               [--no-timestamp]\n\ [--timestamp-format <tf>]\n\
+               [--no-download]\n\
+               [--no-timestamp]\n\
+               [--timestamp-format <tf>]\n\
                [--utc]\n\
                [-v --verbose]\n\
                [--debug]\n\
@@ -37,6 +32,7 @@ Output Options:\n\
   -o, --output-dir <dir>            Name of the parent folder. Default to current folder\n\
   --use-puppeteer                   Use headless browser Chromium\n\
   --use-phantom                     Use headless browser Phantom\n\
+  --no-download                     Only generate the timestamp folder and not actually download the content\n\
   --no-timestamp                    Disable the timestamp folder\n\
   -t, --timestamp-format <tf>       Specify timestamp format supported by `moment` [default: YYYYMMDDHHmmss].\n\
   --utc                             Use UTC time. [default: false].\n\
@@ -51,26 +47,22 @@ Examples:\n\
 \n\
   dl-page --utc --timestamp-format YYYYMMDDHHmmssSSS <url>\n\
         Use UTC time. Timestamp extended to milliseconds, so e.g.: 20191021153025478\n\
-\n ";
+\n ';
 var kwargs = {
-  name: "archive-web",
-  version: "archive-web 0.1.0"
+    name: 'archive-web',
+    version: 'archive-web 0.1.1',
 };
-
-function main(args) {
-  _cmd.launch(args);
-}
-
-function error(err) {
-  process.stderr.write(err);
-}
-
-if (require.main === module) {
-  var args = docopt.docopt(doc, kwargs);
-
-  if (args["--debug"]) {
-    console.log(JSON.stringify(args));
-  }
-
-  main(args);
-}
+const main = async () => {
+    try {
+        var args = docopt.docopt(doc, kwargs);
+        if (args['--debug']) {
+            console.log(JSON.stringify(args));
+        }
+        await launch(args);
+    }
+    catch (e) {
+        console.error(e);
+        process.exit(1);
+    }
+};
+main();
