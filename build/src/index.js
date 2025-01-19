@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import * as docopt from 'docopt';
 import { launch } from './cmd.js';
 const doc = '\n\

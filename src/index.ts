@@ -53,7 +53,7 @@ Examples:\n\
 
 var kwargs = {
   name: 'archive-web',
-  version: 'archive-web 0.1.1',
+  version: 'archive-web 0.1.2',
 };
 
 const main = async () => {
