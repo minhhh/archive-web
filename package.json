@@ -1,7 +1,7 @@
 {
   "name": "archive-web",
   "preferGlobal": true,
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Ha.Minh",
   "description": "Download a webpage for archiving purpose",
   "bin": {
